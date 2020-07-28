@@ -19,7 +19,9 @@
  * 
  * Adapté pour fonctionner avec un ESP01 (512k, 1M) et https://github.com/esp8266/Arduino
  * 
- * L'ESP récupère les données du GPS DJI sur le fil Tx
+ * L'ESP8266 récupère les données du GPS DJI sur le fil Tx
+ * 
+ * Compiler avec l'option CPU Frequency = 160Mhz, nécessaire pour le softserial @115200bds
  */
 
  
