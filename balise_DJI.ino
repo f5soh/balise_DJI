@@ -133,7 +133,7 @@ void loop()
     case 0:
         // Ici on lit les données qui arrivent du GPS et on les passe à la librairie NazaDecoder pour les traiter
         while (softSerial.available())
-           decodedMessage = NazaDecoder.decode(Serial.read());
+           decodedMessage = NazaDecoder.decode(softSerial.read());
            
         // On traite le cas où le GPS a un problème
         if (decodedMessage != NAZA_MESSAGE_GPS) {
@@ -159,8 +159,9 @@ void loop()
         } else {
             // On traite le cas où la position GPS est valide.
             // On renseigne le point de démarrage quand la précision est satisfaisante
-            if (!drone_idfr.has_home_set() && NazaDecoder.getNumSat() > 6 && NazaDecoder.getHdop() < 2.0) {
-                Serial.println("Setting Home Position");
+            if (!drone_idfr.has_home_set() && NazaDecoder.getNumSat() > 6 && NazaDecoder.getHdop() < 2.0 && NazaDecoder.getVdop() < 2.0) {
+                // Serial.print(NazaDecoder.getNumSat()); Serial.print(" "); Serial.print(NazaDecoder.getHdop()); Serial.print(" "); Serial.println(NazaDecoder.getVdop()); 
+                Serial.println(" Setting Home Position");
                 drone_idfr.set_home_position(NazaDecoder.getLat(), NazaDecoder.getLon(), NazaDecoder.getGpsAlt());
 
                 return;

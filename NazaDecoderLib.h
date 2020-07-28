@@ -15,15 +15,15 @@
 
 // Uncomment the line below if you want to disable attitude (pitch/roll) sensing. This may be useful when you experience a conflict with another library that also uses the interrupt
 // or on a board that does not support the interrupt used. Note that for Teensy boards attitude sensing will be disabled by default.
-//#define ATTITUDE_SENSING_DISABLED
+#define ATTITUDE_SENSING_DISABLED
 
 #define NAZA_MESSAGE_NONE    0x00
 #define NAZA_MESSAGE_GPS     0x10
 #define NAZA_MESSAGE_COMPASS 0x20
 
-//#if defined(__MK20DX128__) || defined(__MK20DX256__)
+#if defined(__MK20DX128__) || defined(__MK20DX256__)
   #define ATTITUDE_SENSING_DISABLED
-//#endif
+#endif
 
 class NazaDecoderLib
 {
